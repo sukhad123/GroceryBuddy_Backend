@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import { addItem,getGroupID } from "../../../lib/prisma"
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
 export async function POST(request: Request) {
   try {
     // 1. Get data from request
@@ -10,11 +16,13 @@ export async function POST(request: Request) {
    
 
 //add user
-const groupId:number = await getGroupID(data.adminUser);
 
-console.log(groupId);
+const groupId: number = (await getGroupID(data.adminUser)) ?? 0; // Default to 0 if null or undefined
+
+
 const price = 100;
-const item = await addItem(data.itemName,data.category, price, groupId);
+if(groupId){
+const item = await addItem(data.itemName,data.category, price, groupId);}
 //const user = await addUser(groupId,data.newUserEmail);
     // 2. Return response
     return NextResponse.json(

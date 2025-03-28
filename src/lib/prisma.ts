@@ -98,7 +98,7 @@ export async function getAllUserwithGroupId(email:string){
 // get all users
 export async function getAllUsers(user: string) {
     // Fetch the groupId for the given user
-    const groupId123: number = await getGroupID(user);
+    const groupId123: number = await getGroupID(user)?? 0;
   
     // Fetch users whose groupId is not equal to the fetched groupId
     const users = await prisma.user.findMany({

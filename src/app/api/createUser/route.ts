@@ -1,6 +1,11 @@
 import { NextResponse } from 'next/server';
 import { createUser } from "../../../lib/prisma"
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
 export async function POST(request: Request) {
   try {
     // 1. Get data from request
