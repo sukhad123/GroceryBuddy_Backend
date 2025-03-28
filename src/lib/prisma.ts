@@ -120,8 +120,40 @@ export async function getAllUsers(user: string) {
             itemName:itemName,
             itemType:category,
             itemPrice:price,
-            groupId:groupId
+            groupId:groupId,
+            completed:false,
         }
     })
   }
 
+  //retrieve items with that groupId
+  export async function getItems(groupId:number){
+    const items = await prisma.item.findMany({
+        where:{groupId:groupId},
+        select: {
+            itemName: true,
+            itemType:true,
+            itemPrice:true,
+            id:true // Select only the email field
+          },
+    })
+    return items;
+  }
+
+  //delete the item for the group
+  export  async function deleteItem(itemId:number){
+    console.log("Coming item id", itemId);
+const item = await prisma.item.delete({
+    where:{id:itemId}
+})
+  }
+
+//update the status of the item with itemid
+export async function updateItemStatus(itemId:number){
+    const item = await prisma.item.update({
+        where:{id:itemId},
+        data:{
+            completed:true,
+        }
+    })
+}
