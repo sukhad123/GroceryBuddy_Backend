@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
 
     //get the groupName
-    let groupName:string = await getGroupName(adminUser);
+    let groupName = await getGroupName(adminUser);
 
    if(users){
     const userEmails: Array<{ id: string | number, email: string }> = users?.map(user => ({ id: user.id, email: user.email })) || [];

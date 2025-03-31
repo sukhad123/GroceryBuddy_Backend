@@ -161,7 +161,7 @@ export async function updateItemStatus(itemId:number){
 //retrieve the group name
 export async function getGroupName(email: string) {
     try {
-        const groupId: number | null = await getGroupID(email);
+        const groupId  = await getGroupID(email);
         if (groupId) {
             const group = await prisma.group.findUnique({
                 where: { id: groupId }  
