@@ -133,7 +133,7 @@ export async function getAllUsers(user: string) {
         select: {
             itemName: true,
             itemType:true,
-            itemPrice:true,
+            
             id:true // Select only the email field
           },
     })
