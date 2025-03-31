@@ -157,3 +157,24 @@ export async function updateItemStatus(itemId:number){
         }
     })
 }
+
+//retrieve the group name
+export async function getGroupName(email: string) {
+    try {
+        const groupId: number | null = await getGroupID(email);
+        if (groupId) {
+            const group = await prisma.group.findUnique({
+                where: { id: groupId }  
+            });
+
+            if (group) {
+                return group.name;  
+            }
+        }
+
+        return null; // Return null if no group is found
+    } catch (error) {
+        console.error('Error retrieving group data:', error);
+        throw new Error('Failed to retrieve group data');
+    }
+}
