@@ -22,7 +22,7 @@ const groupId: number = (await getGroupID(data.adminUser)) ?? 0; // Default to 0
 
 const price = 100;
 if(groupId){
-const item = await addItem(data.itemName,data.category, price, groupId);}
+const item = await addItem(data.itemName,data.category, groupId);}
 //const user = await addUser(groupId,data.newUserEmail);
     // 2. Return response
     return NextResponse.json(

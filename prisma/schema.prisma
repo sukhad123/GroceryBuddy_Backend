@@ -34,7 +34,7 @@ model Item {
   itemName  String
   itemType  String
   completed Boolean
-  itemPrice Float  
+   
   groupId   Int
   group     Group   @relation(fields: [groupId], references: [id])
 }

@@ -114,12 +114,12 @@ export async function getAllUsers(user: string) {
   
 
   //add item
-  export async function addItem(itemName:string, category:string, price:number, groupId:number){
+  export async function addItem(itemName:string, category:string,   groupId:number){
     const item = await prisma.item.create({
         data:{
             itemName:itemName,
             itemType:category,
-            itemPrice:price,
+         
             groupId:groupId,
             completed:false,
         }
